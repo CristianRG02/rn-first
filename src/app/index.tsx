@@ -1,30 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  const [count, setCount] = useState<number>(0);
   return (
     <View style={styles.container}>
-      <View style={styles.tarjeta}>
-        <View style={styles.avatar}>
-          <Text style={styles.iniciales}>JD</Text>
-        </View>
+      <Text style={styles.count}>{count}</Text>
+      <Text style={styles.count}>{count*2}</Text>
 
-        <Text style={styles.nombre}>Juan Delgado</Text>
-        <Text style={styles.rol}>Transportista</Text>
+      <Pressable style={styles.button} onPress={() => setCount(count + 1)}>
+        <Text style={styles.buttonText}>+1</Text>
+      </Pressable>
 
-        <View style={styles.divisor} />
+      <Pressable style={styles.button} onPress={() => setCount(count - 1)}>
+        <Text style={styles.buttonText}>-1</Text>
+      </Pressable>
 
-        <View style={styles.cen}>
-          <View style={styles.fila}>
-          <Text>📞</Text>
-          <Text style={styles.texto}>+52 555 123 4567</Text>
-        </View>
-
-        <View style={styles.fila}>
-          <Text>✉️</Text>
-          <Text style={styles.texto}>juan@fletes.com</Text>
-        </View>
-        </View>
-      </View>
+      <Pressable style={styles.button} onPress={() => setCount(0)}>
+        <Text style={styles.buttonText}>reset</Text>
+      </Pressable>
     </View>
   );
 }
@@ -33,45 +27,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0f172a",
-    padding: 16,
-    justifyContent: "center", alignItems: "center"
-  },
-  tarjeta: {
-    width: "100%",
-    backgroundColor: "#1e293b",
-    maxWidth: 340,
-    borderRadius: 16,
-    padding: 24,
-    borderWidth: 1,
     alignItems: "center",
-    gap: 12,
-    borderColor: "#334155",
+    justifyContent: "center",
+    gap: 16,
   },
-  cen:{
-    alignItems: "center"
+  count: {
+    color: "#f8fafc",
+    fontSize: 64,
+    fontWeight: "700",
   },
-  divisor: {
-    height: 1,
-    alignSelf: "stretch", backgroundColor: "#334155",
+  button: {
+    backgroundColor: "#3b82f6",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
   },
-  avatar: {
-    width: 72, height: 72, borderRadius: 36, justifyContent: "center", alignItems: "center", backgroundColor: "#3b82f6",
+  buttonText: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "700",
   },
-  iniciales: {
-    color: "#f8fafc", fontSize: 24, fontWeight: "700",
-  },
-  nombre: {
-    color: "#f8fafc", fontSize: 24, fontWeight: "700",
-  },
-  rol: {
-    fontSize: 14, color: "#94a3b8",
-  },
-  fila: {
-    flexDirection: "row", alignItems: "center", gap: 8, alignSelf: "stretch",
-  },
-  texto: {
-    fontSize: 15, color: "#f8fafc",
-  }
-
-
 });
